@@ -1,3 +1,21 @@
+
+<div class="image-content row col-lg-12">
+    <label class="col-xs-3"></label>
+    <div class="col-xs-12 col-sm-9 image-rendering">  
+
+      <sd-image-loader
+            class="image-select"
+            result-data-uri="$ctrl.setImageContent(dataUri)"
+            ng-if="!$ctrl.image.id">
+          <span class="invalid"
+                ng-show="imageform['image-file'].$error.maxSize"
+                >image size is too large (max=10MB)</span>          
+      </sd-image-loader>      
+      <span class="invalid">{{$ctrl.item.errors.content_type}}</span>
+      <span class="invalid">{{$ctrl.item.errors.content}}</span>      
+    </div>
+</div>
+
 <form id="signup-form" name="signup_form" ng-submit="$ctrl.signup()">
   <span class="invalid"
         ng-hide="signup_form.$dirty">{{$ctrl.signupForm.errors.full_messages}}</span>

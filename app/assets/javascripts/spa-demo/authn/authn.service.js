@@ -16,6 +16,7 @@
     service.getCurrentUserId = getCurrentUserId;
     service.login = login;
     service.logout = logout;
+    service.updateSignup = updateSignup;
 
     activate();
     return;
@@ -30,6 +31,11 @@
     function signup(registration) {
       return $auth.submitRegistration(registration);
     }
+
+    function updateSignup(registration) {
+      return $auth.updateAccount(registration);
+    }
+
     function isAuthenticated() {
       return service.user!=null && service.user["uid"]!=null;
     }
