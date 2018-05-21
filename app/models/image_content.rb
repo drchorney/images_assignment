@@ -1,5 +1,6 @@
 class ImageContent
   include Mongoid::Document
+  include EXIFR::JPEG
   #3:2 ratios
   THUMBNAIL="100x67"
   SMALL="320x213"
