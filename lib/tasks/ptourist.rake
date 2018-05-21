@@ -4,7 +4,7 @@ namespace :ptourist do
   ORIGINATORS=["carol","alice"]
   BOYS=["greg","peter","bobby"]
   GIRLS=["marsha","jan","cindy"]
-  BASE_URL="http://dev9.jhuep.com/fullstack-capstone"
+  BASE_URL="https://dev9.jhuep.com/fullstack-capstone"
 
   def user_name first_name
     last_name = (first_name=="alice") ? "nelson" : "brady"
@@ -56,6 +56,15 @@ namespace :ptourist do
     organizer.add_role(Role::ORGANIZER, image).save
     create_image_content img.merge(:image=>image)
   end
+
+  def create_user_image organizer, img
+    puts "building user image for #{img[:caption]}, by #{organizer.name}"
+    image=Image.create(:creator_id=>organizer.id,:caption=>img[:caption],:photo_user_id=>organizer.id)
+    organizer.update(:image_id=>image.id)
+    organizer.add_role(Role::ORGANIZER, image).save
+    create_image_content img.merge(:image=>image)
+  end
+
 
   def create_image_content img
     url="#{BASE_URL}/#{img[:path]}"
@@ -336,6 +345,7 @@ Work up a sweat in our 24-hour StayFit Gym, which features Life Fitness® cardio
      :lat=>39.3149715
      }
     create_image organizer, image
+    create_user_image organizer, image
 
     organizer=get_user("alice")
     image= {:path=>"db/bta/skyline_water_level.jpg",

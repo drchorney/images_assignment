@@ -18,6 +18,7 @@
   function NavbarController($scope, Authn) {
     var vm=this;
     vm.getLoginLabel = getLoginLabel;
+    vm.getUserImage = getUserImage;
 
     vm.$onInit = function() {
       console.log("NavbarController",$scope);
@@ -26,6 +27,10 @@
     //////////////
     function getLoginLabel() {
       return Authn.isAuthenticated() ? Authn.getCurrentUserName() : "Login";
+    }
+
+    function getUserImage() {
+      return Authn.isAuthenticated() ? Authn.getCurrentUserImage() : null;
     }
   }
 })();

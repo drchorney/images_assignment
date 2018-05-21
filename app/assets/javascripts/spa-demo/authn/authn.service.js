@@ -36,6 +36,7 @@
     function getCurrentUserName() {
       return service.user!=null ? service.user.name : null;
     }
+
     function getCurrentUserId() {
       return service.user!=null ? service.user.id : null;
     }

@@ -24,9 +24,10 @@ ActiveRecord::Schema.define(version: 20170130051702) do
 
   create_table "images", force: :cascade do |t|
     t.string   "caption"
-    t.integer  "creator_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "creator_id",    null: false
+    t.integer  "photo_user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "images", ["creator_id"], name: "index_images_on_creator_id", using: :btree
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20170130051702) do
     t.string   "nickname"
     t.string   "image"
     t.string   "email"
+    t.integer  "image_id"
     t.json     "tokens"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false

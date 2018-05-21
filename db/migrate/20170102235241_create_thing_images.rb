@@ -3,6 +3,7 @@ class CreateThingImages < ActiveRecord::Migration
     create_table :images do |t|
       t.string :caption
       t.integer :creator_id, {null:false}
+      t.integer :photo_user_id
 
       t.timestamps null: false
     end

@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :update, :destroy, :content]
-  wrap_parameters :image, include: ["caption"]
+  wrap_parameters :image, include: ["caption","photo_user_id"]
   before_action :authenticate_user!, only: [:create, :update, :destroy]
   after_action :verify_authorized, except: [:content]
   after_action :verify_policy_scoped, only: [:index]
@@ -9,7 +9,7 @@ class ImagesController < ApplicationController
 
   def index
     authorize Image
-    @images = policy_scope(Image.all)
+    @images = policy_scope(Image.all.where(:photo_user_id=>nil))
     @images = ImagePolicy.merge(@images)
   end
 
@@ -80,7 +80,7 @@ class ImagesController < ApplicationController
     end
 
     def image_params
-      params.require(:image).permit(:caption)
+      params.require(:image).permit(:caption,:photo_user_id)
     end
 
     def image_content_params
