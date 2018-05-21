@@ -1,4 +1,4 @@
-require 'exifr'
+require 'exifr/jpeg'
 
 class ImageContent
   include Mongoid::Document
